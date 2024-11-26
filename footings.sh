@@ -111,7 +111,7 @@ for ((i=${#mdfiles[@]}-1;i>=0;i--)); do
 done
 
 #Sort the keys of the array into date order. Then process them into posts.
-IFS=$'\n' sorted_keys=($(printf '%s\n' "${!date_list[@]}" | sort -n))
+IFS=$'\n' sorted_keys=($(printf '%s\n' "${!date_list[@]}" | sort -nr))
 
 for value in "${sorted_keys[@]}"; do
 no_filename=${date_list["${value}"]#*,}
