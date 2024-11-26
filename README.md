@@ -24,7 +24,7 @@ lang="en"
 
 ### Requirements
 - Bash 3.2
-- [Markdown installed](https://#.com)
+- [Markdown installed](https://command-not-found.com/markdown)
 
 ### Usage
 Your posts must be formatted like this (using a sane date format):
