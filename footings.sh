@@ -6,12 +6,6 @@ baseurl="https://sitename.net"
 lang="en"
 datedfolders=true
 
-# color theme
-background_color="#f6f7fc"
-text_color="#343636"
-link_color="#006edc"
-quote_color="#f6d6d9"
-
 render_template(){
 local title=$1
 local content=$2
