@@ -11,8 +11,8 @@ This project is a fork of [ssg7](https://github.com/rtfmexe/ssg7).
  - UK Date formats
  - Organises posts into date folders. For example, 
  ```
- 01-01-2025 > my-cool-blog-post-about-planes.html
- 07-03-2025 > my-long-post-about-boats.html
+ MyWebsite > posts > 01-01-2025 > my-cool-blog-post-about-planes.html
+ MyWebsite > posts > 07-03-2025 > my-long-post-about-boats.html
  ```
  - The blog/site config itself is configured inside the script itself, take a peek:
 
