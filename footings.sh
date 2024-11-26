@@ -72,6 +72,7 @@ for ((i=${#mdfiles[@]}-1;i>=0;i--)); do
   read -r pubdate name ext <<< ${filename//./ }
   post=$(markdown $source_dir/$filename)
   [[ $post =~ \<h1\>(.*)\</h1\> ]] && post_title=${BASH_REMATCH[1]}
+
   #Check to see whether we should create dated folders and nest the posts
   if [[ "$datedfolders" == "true" ]]; then
   mkdir $posts_dir/${filename:0:10}
@@ -98,36 +99,23 @@ for ((i=${#mdfiles[@]}-1;i>=0;i--)); do
 
   # Add the values to an array, with dates as keys and comma separate the filename, original date and post title.
   date_list["${epochdate}"]="$posts_url/$datefolder/${cleanfilename}.html",${datefolder},${post_title}
-
-  # generate posts list for index
-
-  posts_list+="
-  <li style="list-style-type="none"">
-  <a href=\"$posts_url/$datefolder/${cleanfilename}.html\">$post_title</a>
-  -
-  $pubdate
-  </li>
-  "
 done
 
 #Sort the keys of the array into date order. Then process them into posts.
 IFS=$'\n' sorted_keys=($(printf '%s\n' "${!date_list[@]}" | sort -nr))
 
+# Loop through the sorted keys and generate the post date, post title and post url. Finally, generate the post list.
 for value in "${sorted_keys[@]}"; do
 no_filename=${date_list["${value}"]#*,}
 url=${date_list["${value}"]%%,*}
 post_date=${no_filename:0:10}
 post_title=${no_filename:11}
 posts_list2+="
-<li>
+<li class=\"pl0\">
 <a href=\""$url"\">$post_title</a> - $post_date
 </li>
 "
 done
-
-#echo $posts_list2
-# Sort the date array ascending.
-#
 
 index_content=$(wrap_index_content "$posts_list2")
 render_template "$sitename" "$index_content" > $dest_dir/all.html
